@@ -2,7 +2,7 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// check local storage for theme setting
+// check local storage for theme setting - default to light
 const currentTheme = localStorage.getItem('theme') || 'light';
 body.setAttribute('data-theme', currentTheme);
 updateThemeIcon(currentTheme);
@@ -62,23 +62,6 @@ window.addEventListener('DOMContentLoaded', () => {
         bioBlock.classList.add('active');
     }
 });
-
-// search functionality
-const searchBtn = document.getElementById('search-btn');
-searchBtn.addEventListener('click', () => {
-    alert('search functionality to be implemented');
-});
-
-// download CV functionality (placeholder)
-const downloadBtn = document.getElementById('download-cv');
-if (downloadBtn) {
-    downloadBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('please put your CV file in the project directory and update this link');
-        // in actual use, you can do this:
-        // window.open('path/to/your/cv.pdf', '_blank');
-    });
-}
 
 // smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
