@@ -51,7 +51,7 @@ body {
     color: var(--text-dark);
     background: #f5f7fa;
     min-height: 100vh;
-    padding: 2.5vh 2.5vw;
+    padding: 2vh 2vw;
     transition: background 0.3s ease, color 0.3s ease;
     position: relative;
     overflow-x: hidden;
@@ -225,7 +225,7 @@ body::after {
 /* content wrapper */
 .content-wrapper {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 280px 1fr;
     gap: 40px;
     padding: 40px;
 }
