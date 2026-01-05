@@ -1,0 +1,21 @@
+# operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# temporary files
+*.log
+*.tmp
+*.temp
+
+# cv.pdf
+# resume.pdf
+# *.pdf
+
