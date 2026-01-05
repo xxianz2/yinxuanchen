@@ -326,7 +326,7 @@ body::after {
 
 /* content section */
 .content-section {
-    min-height: 600px;
+    min-height: auto;
 }
 
 .content-block {
