@@ -31,41 +31,41 @@ function updateThemeIcon(theme) {
 const navLinks = document.querySelectorAll('.nav-link');
 const contentBlocks = document.querySelectorAll('.content-block');
 
+function activateSection(targetId) {
+    // remove all active states
+    navLinks.forEach(l => l.classList.remove('active'));
+    contentBlocks.forEach(block => block.classList.remove('active'));
+
+    const targetBlock = document.getElementById(targetId) || document.getElementById('bio');
+    if (!targetBlock) return;
+
+    targetBlock.classList.add('active');
+
+    const activeLink = document.querySelector(`.nav-link[href="#${targetId}"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+
+    // initialize travel map lazily when Hobbies/Travel tab is opened
+    if (targetId === 'travel') {
+        initTravelMap();
+    }
+}
+
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        // remove all active states
-        navLinks.forEach(l => l.classList.remove('active'));
-        contentBlocks.forEach(block => block.classList.remove('active'));
-        
-        // add active state to current link
-        link.classList.add('active');
-        
-        // display corresponding content block
         const targetId = link.getAttribute('href').substring(1);
-        const targetBlock = document.getElementById(targetId);
-        
-        if (targetBlock) {
-            targetBlock.classList.add('active');
-
-            // initialize travel map lazily when Travel tab is opened
-            if (targetId === 'travel') {
-                initTravelMap();
-            }
-        } else {
-            // if there is no corresponding content block, display bio
-            document.getElementById('bio').classList.add('active');
-        }
+        activateSection(targetId);
+        // update URL hash without jumping
+        history.replaceState(null, '', `#${targetId}`);
     });
 });
 
-// default display bio section
+// default display section based on URL hash (for GitHub Pages deep links)
 window.addEventListener('DOMContentLoaded', () => {
-    const bioBlock = document.getElementById('bio');
-    if (bioBlock) {
-        bioBlock.classList.add('active');
-    }
+    const hash = window.location.hash ? window.location.hash.substring(1) : 'bio';
+    activateSection(hash);
 });
 
 // smooth scrolling for in-page anchors outside nav (if any)
